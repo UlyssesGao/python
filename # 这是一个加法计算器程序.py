@@ -9,11 +9,18 @@ def calculate():
         op = operation.get()
         if op == "加法":
             result = num1 + num2
+        elif op == "减法":
+            result = num1 - num2
+        elif op == "乘法":
+            result = num1 * num2
         elif op == "除法":
             if num2 == 0:
                 label_result.config(text="❌ 不能除以零！")
                 return
             result = num1 / num2
+        else:
+            label_result.config(text="❌ 未知运算符！")
+            return
         label_result.config(text=f"✅ 计算结果：{result}")
     except ValueError:
         label_result.config(text="❌ 请输入有效数字！")
@@ -54,7 +61,7 @@ entry2.grid(row=0, column=1)
 # 操作选择
 operation_label = ttk.Label(root, text="选择操作：")
 operation_label.pack(pady=5)
-operation = ttk.Combobox(root, values=["加法", "除法"], state="readonly")
+operation = ttk.Combobox(root, values=["加法", "减法", "乘法", "除法"], state="readonly")
 operation.set("加法")
 operation.pack(pady=5)
 
